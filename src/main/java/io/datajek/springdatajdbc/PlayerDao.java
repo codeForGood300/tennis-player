@@ -34,4 +34,16 @@ public class PlayerDao {
                 new Object[] {player.getId(), player.getName(), player.getNationality(),
                         new Timestamp(player.getBirthDate().getTime()), player.getTitles()});
     }
+
+    public int deletePlayerById(int id) {
+        String sql="DELETE FROM PLAYER WHERE ID = ?";
+        return jdbcTemplate.update(sql, new Object[] {id});
+    }
+
+    public void createTournamentTable() {
+        String sql = "CREATE TABLE TOURNAMENT (ID INTEGER, NAME VARCHAR(50), LOCATION VARCHAR(50), PRIMARY KEY (ID))";
+        jdbcTemplate.execute(sql);
+        System.out.println("Table created");
+    }
+
 }
