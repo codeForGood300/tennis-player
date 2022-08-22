@@ -46,4 +46,24 @@ public class PlayerDao {
         System.out.println("Table created");
     }
 
+    public List<Player> getPlayerByNationality(String nationality) {
+        String sql = "SELECT * FROM PLAYER WHERE NATIONALITY = ?";
+        return jdbcTemplate.query(sql, new PlayerMapper(), new Object[] {nationality});
+    }
+
+
+    private static final class PlayerMapper implements RowMapper {
+
+        @Override
+        public Player mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+            Player player = new Player();
+            player.setId(resultSet.getInt("id"));
+            player.setName(resultSet.getString("name"));
+            player.setNationality(resultSet.getString("nationality"));
+            player.setBirthDate(resultSet.getDate("birth_date")); //.getTime("birth_date"));
+            player.setTitles(resultSet.getInt("titles"));
+            return player;
+        }
+    }
+
 }
