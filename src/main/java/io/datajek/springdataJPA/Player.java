@@ -3,9 +3,11 @@ package io.datajek.springdataJPA;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import java.sql.Date;
 
 @Entity
+@NamedQuery(name="get_all_players", query="SELECT p FROM Player p")
 public class Player {
     @Id
     @GeneratedValue

@@ -35,6 +35,9 @@ public class TennisPlayerApplication implements CommandLineRunner {
 				new Player(3, "Thiem", "Austria", Date.valueOf("1993-09-03"), 17)));
 		//get player
 		logger.info("\n\n>> Player with id 3: {}\n", repo.getPlayerById(3));
+		repo.deletePlayerById(2);
+		//get all players
+		logger.info("\n\n>> All Players Data: {}", repo.getAllPlayers());
 	}
 
 }
